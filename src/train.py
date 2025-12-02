@@ -5,7 +5,7 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from data_loader import load_data
 from model import build_model
 
-dataset_path = "dataset"
+dataset_path = "../dataset"
 img_size = (224, 224)
 batch_size = 32
 
