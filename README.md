@@ -1,16 +1,7 @@
 # pneumoniadetection
-Sure! Here’s a **professional README.md** for your Pneumonia Detection project using your CNN model and Streamlit app. It’s ready to put on GitHub.
-
----
-
-# **README.md**
-
-```markdown
 # 🩺 Pneumonia Detection from Chest X-ray using CNN
 
 This project detects **Pneumonia** from chest X-ray images using a Convolutional Neural Network (CNN) and provides a user-friendly **Streamlit web application** to run predictions.
-
----
 
 ## **Project Overview**
 
@@ -21,11 +12,7 @@ Chest X-ray images are a common tool to diagnose pneumonia. This project uses a 
 
 The model predicts whether a given X-ray image shows signs of Pneumonia and provides a confidence score.
 
----
-
 ## **Folder Structure**
-
-```
 
 pneumoniadetection/
 │
@@ -40,38 +27,10 @@ pneumoniadetection/
 ├── requirements.txt          # Dependencies
 └── README.md
 
-````
 
 > ⚠ Note: `best_model.h5` is large and not pushed to GitHub. It is downloaded from **Google Drive** in `app.py`.
 
----
-
-## **Setup Instructions**
-
-### 1. Clone the repository
-
-```bash
-git clone <your-github-repo-url>
-cd pneumoniadetection/src
-````
-
-### 2. Install dependencies
-
-```bash
-pip install -r ../requirements.txt
-```
-
-### 3. Run the Streamlit App
-
-```bash
-streamlit run app.py
-```
-
-* Upload a chest X-ray image (jpg/png)
-* Click **Predict**
 * See result (**NORMAL** / **PNEUMONIA**) and confidence
-
----
 
 ## **Google Drive Model**
 
@@ -79,44 +38,49 @@ streamlit run app.py
   [Download Link](https://drive.google.com/file/d/1Q2YL3PLCuec5-PM_6iNNQyLe6_pCz6ai/view?usp=sharing)
 * The app automatically downloads the model if it is not present locally.
 
----
-
 ## **Prediction Workflow**
-
 1. Upload X-ray image.
 2. Image is resized to `(224, 224)` and normalized.
 3. CNN model predicts the probability of Pneumonia.
 4. App displays:
-
    * Label (`NORMAL` / `PNEUMONIA`)
    * Confidence score
-
----
-
-## **Requirements**
-
-* Python >= 3.9
-* TensorFlow
-* Streamlit
-* Pillow
-* gdown
-* Numpy
-
-Install all dependencies via:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## **Optional Enhancements**
-
-* Grad-CAM heatmaps to highlight affected lung regions
-* Batch predictions for multiple images
-* Deploy to Streamlit Cloud or Heroku
-
----
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ conv2d (Conv2D)                      │ (None, 224, 224, 32)        │             896 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization                  │ (None, 224, 224, 32)        │             128 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d (MaxPooling2D)         │ (None, 112, 112, 32)        │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_1 (Conv2D)                    │ (None, 112, 112, 64)        │          18,496 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_1                │ (None, 112, 112, 64)        │             256 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d_1 (MaxPooling2D)       │ (None, 56, 56, 64)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_2 (Conv2D)                    │ (None, 56, 56, 128)         │          73,856 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_2                │ (None, 56, 56, 128)         │             512 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d_2 (MaxPooling2D)       │ (None, 28, 28, 128)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten (Flatten)                    │ (None, 100352)              │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 128)                 │      12,845,184 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 128)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 1)                   │             129 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 12,939,457 (49.36 MB)
+ Trainable params: 12,939,009 (49.36 MB)
+ Non-trainable params: 448 (1.75 KB)
 
 ## **Developer**
 
@@ -124,16 +88,5 @@ pip install -r requirements.txt
 * **Project:** Pneumonia Detection CNN
 * **Contact:** kiranbasava230@gmail.com
 
----
 
-## **License**
-
-This project is licensed under MIT License. See [LICENSE](../LICENSE) for details.
-
-```
-
----
-
-If you want, I can also **write a polished `requirements.txt`** specifically for this project with exact versions for Streamlit, TensorFlow, etc., so it works perfectly in VS Code or Colab.  
-``
 streamlit:https://kiranpneumoniadetection.streamlit.app/
